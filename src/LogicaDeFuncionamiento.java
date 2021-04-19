@@ -27,7 +27,7 @@ public class LogicaDeFuncionamiento {
         }
 
         // Actualizar completitud de productos en la lista de produccion
-        ListOnProduction.updateCompleteness();
+        ListOnProduction.updateCompleteness(ListOnPending);
         ListOnProduction.printProductionList();
         ListOnPending.printClientList();
         

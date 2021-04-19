@@ -94,4 +94,13 @@ public class ClientList{
         }
         return clientsToOrder;
     }
+
+    public Client findClient(String findID){// busca por nombre, un producto en el menu. y retorna ese product
+        for (int i=0; i<clientList.size(); i++){
+            if ((clientList.get(i)).ID.equalsIgnoreCase(findID)){
+                return clientList.get(i);
+            }
+        }
+        return null;
+    }
 }

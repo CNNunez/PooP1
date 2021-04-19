@@ -75,13 +75,24 @@ public class ProductionList {
         System.out.println(" ");
     }
 
-    public void updateCompleteness(){
+    public void updateCompleteness(ClientList ListOnPending){
         for (int i=0; i<listToProduce.size(); i++){
             (listToProduce.get(i)).completeness = (listToProduce.get(i)).completeness + 1;
 
             // Verificar si producto se ha completado
             if ((listToProduce.get(i)).completeness == ((listToProduce.get(i)).productToProduce).Time){
+                String IDToFind = (listToProduce.get(i)).clientID;
+                int CostToAddToBill = ((listToProduce.get(i)).productToProduce).Price;
+
+                // Buscar cliente en lista de pendientes
+                Client ClientFound = ListOnPending.findClient(IDToFind);
+
+                // Add product to bill
+                ClientFound.addToBill(CostToAddToBill);
+
+                // eliminar producto de la lista de produccion
                 listToProduce.remove(listToProduce.get(i));
+
             }
         }
     }
