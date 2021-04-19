@@ -104,7 +104,7 @@ public class ClientList{
         return null;
     }
 
-    public void updateCompleteness(ProductionList ListOnProduction){
+    public void updateCompleteness(ProductionList ListOnProduction, Record restaurantRecord){
         //System.out.println(" 1");
         for (int i=0; i<clientList.size(); i++){
             if ((clientList.get(i)).Order.isEmpty()){
@@ -116,6 +116,8 @@ public class ClientList{
                     }
                 }
                 if (found == false){
+                    int totalBill = (clientList.get(i)).Bill;
+                    restaurantRecord.updateRecord(totalBill, 0);
                     clientList.remove(clientList.get(i));
                 }
             }

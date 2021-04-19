@@ -11,7 +11,6 @@ public class LogicaDeFuncionamiento {
 
             // Agregar las ordenes de los clientes
             ListReadyToOrder.addOrdersToClients(restaurantMenu);
-            ListReadyToOrder.printClientList();
 
             // Agregar pedidos y clientes a la lista de pendientes
             ListOnPending.addClientList(ListReadyToOrder);
@@ -28,9 +27,10 @@ public class LogicaDeFuncionamiento {
 
         // Actualizar completitud de productos en la lista de produccion
         ListOnProduction.updateCompleteness(ListOnPending);
-        ListOnPending.updateCompleteness(ListOnProduction);
+        ListOnPending.updateCompleteness(ListOnProduction, restaurantRecord);
         ListOnProduction.printProductionList();
         ListOnPending.printClientList();
+        restaurantRecord.printRecord();
         
         // actualizar contadores de los clientes
         ListOnWating.updateClientPatieneAndWaiting();
