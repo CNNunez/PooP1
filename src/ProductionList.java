@@ -76,6 +76,7 @@ public class ProductionList {
     }
 
     public void updateCompleteness(ClientList ListOnPending){
+        List <Production> listOfProductsDone = new ArrayList<>();
         for (int i=0; i<listToProduce.size(); i++){
             (listToProduce.get(i)).completeness = (listToProduce.get(i)).completeness + 1;
 
@@ -90,10 +91,14 @@ public class ProductionList {
                 // Add product to bill
                 ClientFound.addToBill(CostToAddToBill);
 
-                // eliminar producto de la lista de produccion
-                listToProduce.remove(listToProduce.get(i));
+                // anadir producto a la lista de productos terminados
+                listOfProductsDone.add(listToProduce.get(i));
 
             }
+        }
+        // eliminar producto de la lista de produccion
+        for (int i=0; i<listOfProductsDone.size(); i++){
+            listToProduce.remove(listOfProductsDone.get(i));
         }
     }
 }

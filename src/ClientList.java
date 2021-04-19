@@ -103,4 +103,22 @@ public class ClientList{
         }
         return null;
     }
+
+    public void updateCompleteness(ProductionList ListOnProduction){
+        //System.out.println(" 1");
+        for (int i=0; i<clientList.size(); i++){
+            if ((clientList.get(i)).Order.isEmpty()){
+                //System.out.println("2");
+                boolean found = false;
+                for (int j=0; j<(ListOnProduction.listToProduce).size(); j++){
+                    if (((ListOnProduction.listToProduce).get(j)).clientID.equals((clientList.get(i)).ID)){
+                        found = true;
+                    }
+                }
+                if (found == false){
+                    clientList.remove(clientList.get(i));
+                }
+            }
+        }
+    }
 }
