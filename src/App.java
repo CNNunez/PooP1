@@ -19,6 +19,8 @@ public class App {
         // Crear lista de Produccion
         ProductionList ListOnProduction = new ProductionList();
         
+        // Crear el registro del restaurante
+        Record restaurantRecord = new Record();
 
         // Cargar los datos iniciales
         new CargarDatos(restaurantMenu, ListOnWating);
@@ -26,7 +28,7 @@ public class App {
         // Contro de tick
         String OnTick = "";
         while (OnTick.equals("")){
-            new LogicaDeFuncionamiento(restaurantMenu, ListOnWating, ListReadyToOrder, ListOnPending, ListOnProduction);
+            new LogicaDeFuncionamiento(restaurantMenu, ListOnWating, ListReadyToOrder, ListOnPending, ListOnProduction, restaurantRecord);
             OnTick = System.console().readLine("New tick? ");
         }
         

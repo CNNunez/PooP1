@@ -13,13 +13,13 @@ public class Record {
         unsatisfiedClientes = 0;
     }
 
-    void update(int newNumOrdersCompleted, double newProfits, int newUnsatisfiedClientes){
-        numOrdersCompleted = newNumOrdersCompleted;
-        Profits = newProfits;
-        unsatisfiedClientes = newUnsatisfiedClientes;
+    void updateRecord(double newProfits, int newUnsatisfiedClientes){
+        numOrdersCompleted = numOrdersCompleted + 1;
+        Profits = Profits + newProfits;
+        unsatisfiedClientes = unsatisfiedClientes + newUnsatisfiedClientes;
     }
 
-    void print(){
+    void printRecord(){
         System.out.println("---------- REGISTRO DE VENTAS ----------");
         System.out.println("- Numero de ordenes completadas: " + numOrdersCompleted);
         System.out.println("- Ganancias acumuladas: " + Profits);

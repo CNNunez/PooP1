@@ -1,3 +1,4 @@
+// Imports
 import java.util.*;
 
 public class ProductionList {
@@ -9,31 +10,31 @@ public class ProductionList {
         Capacity = 0;
     }
 
-    public boolean addToProduction(Menu restaurantMenu, ClientList ListOnPending){//anadir pedido a la lista de produccion
-        int actualCapacity = checkCapacity();
-        while (actualCapacity != 0){
-            for (int i=0; i<ListOnPending.clientList.size(); i++){// tomar cada cliente de la lista de espera
-                Client ClientOnPending = (ListOnPending.clientList).get(i);
+    public void addToProduction(Menu restaurantMenu, ClientList ListOnPending){//anadir pedido a la lista de produccion
+        int actualCapacity;
+        
+        for (int i=0; i<(ListOnPending.clientList).size(); i++){// tomar cada cliente de la lista de espera
+            Client ClientOnPending = (ListOnPending.clientList).get(i);
+            List<String> ClientOrderList = new ArrayList<>(ClientOnPending.Order);
+            int OrderSize = ClientOrderList.size();
 
-                for (int j=0; j<(ClientOnPending.Order).size(); j++){// tomar la orden de cada cliente
-                    String ProductName = (ClientOnPending.Order).get(i);
-                    Product ProductInOrder = restaurantMenu.findProduct(ProductName);// buscar datos del producto en el menu
-                    
-                    if (ProductInOrder.Time <= actualCapacity){//si hay espacio en produccion
-                        Production newProduction = new Production(ClientOnPending.ID, ProductInOrder);
+            for (int j=0; j<OrderSize; j++){// tomar la orden de cada cliente
+                String ProductName = ClientOrderList.get(j);
+                Product ProductInOrder = restaurantMenu.findProduct(ProductName);// buscar datos del producto en el menu
+                actualCapacity = checkCapacity();
+                
+                if (ProductInOrder.Time <= actualCapacity){//si hay espacio en produccion
+                    Production newProduction = new Production(ClientOnPending.ID, ProductInOrder);
 
-                        // anadir nuevo producto a produccion
-                        listToProduce.add(newProduction);
-                        Capacity = Capacity + ProductInOrder.Time;
+                    // anadir nuevo producto a produccion
+                    listToProduce.add(newProduction);
+                    Capacity = Capacity + ProductInOrder.Time;
 
-                        // borrar producto de la orden
-                        ClientOnPending.removeFromOrder(ProductName);
-                        return true;
-                    }
+                    // borrar producto de la orden
+                    ClientOnPending.removeFromOrder(ProductName);
                 }
             }
         }
-        return false;
     }
 
     public boolean isEmpty(){// retorna true si la lista esta vacia
@@ -51,7 +52,7 @@ public class ProductionList {
             return actualCapacity;
         }else{
             for (int i=0; i<listToProduce.size(); i++){
-                actualCapacity = actualCapacity - listToProduce.get(i).productToProduce.Time;
+                actualCapacity = actualCapacity - ((listToProduce.get(i)).productToProduce).Time;
             }
             return actualCapacity;
         }
@@ -72,5 +73,16 @@ public class ProductionList {
         }
         System.out.println("---------------------------------------");
         System.out.println(" ");
+    }
+
+    public void updateCompleteness(){
+        for (int i=0; i<listToProduce.size(); i++){
+            (listToProduce.get(i)).completeness = (listToProduce.get(i)).completeness + 1;
+
+            // Verificar si producto se ha completado
+            if ((listToProduce.get(i)).completeness == ((listToProduce.get(i)).productToProduce).Time){
+                listToProduce.remove(listToProduce.get(i));
+            }
+        }
     }
 }

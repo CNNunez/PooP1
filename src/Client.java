@@ -36,7 +36,7 @@ public class Client {
                 contAnadidos = contAnadidos + 1;
             }
         }
-        if (contAnadidos != 0){
+        if (contAnadidos != orderList.size()){
             System.out.println(" ** ERROR: Algunos productos no se encuentran en el menu. En su orden se anadieron: " + contAnadidos + " productos.");
             System.out.println(" ");
         }
