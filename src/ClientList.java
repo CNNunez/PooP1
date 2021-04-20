@@ -55,6 +55,8 @@ public class ClientList{
             System.out.println(cont);
             System.out.println("ID: " + clientInLine.ID);
             System.out.println("Bill: " + clientInLine.Bill);
+            System.out.println("WaitingTime: " + clientInLine.waitingTime);
+            System.out.println("Patience: " + clientInLine.Patience);
             System.out.print("Order: ");
             for (String dishName: clientInLine.Order){
                 System.out.print(dishName + ", ");
@@ -66,9 +68,8 @@ public class ClientList{
         System.out.println(" ");
     }
 
-    public void updateClientPatieneAndWaiting(){// disminuye en 1 el tiempo de espera y paciencia
+    public void updateClientWaiting(){// disminuye en 1 el tiempo de espera y paciencia
         for (int i=0; i<clientList.size(); i++){
-            clientList.get(i).updatePatience();
             clientList.get(i).updateWaitingTime();
         }
     }
@@ -95,6 +96,25 @@ public class ClientList{
         return clientsToOrder;
     }
 
+    public void updateClientPatience(ProductionList ListOnProduction, Record restaurantRecord){// si tiempo de espera es 0 borra de waitingList y agrega a nueva lista
+        List<Client> ClientsOnPending = new ArrayList<>(clientList);
+        for (int i=0; i<ClientsOnPending.size(); i++){
+            clientList.get(i).updatePatience();
+            if ((ClientsOnPending.get(i)).Patience <= 0){
+                restaurantRecord.updateRecord(0, 1);// add unsatisfed client to record
+                String IDToRemove = (ClientsOnPending.get(i)).ID;
+                clientList.remove(ClientsOnPending.get(i)); // remover cliente de lista de pendiente
+
+                List <Production> OrdersOnProduction = new ArrayList<>(ListOnProduction.listToProduce);
+                for (int j=0; j<OrdersOnProduction.size(); j++){// remover orden de lista de produccion
+                    if ((OrdersOnProduction.get(j)).clientID.equalsIgnoreCase(IDToRemove)){
+                        (ListOnProduction.listToProduce).remove(OrdersOnProduction.get(j));
+                    }
+                }
+            }
+        }
+    }
+
     public Client findClient(String findID){// busca por nombre, un producto en el menu. y retorna ese product
         for (int i=0; i<clientList.size(); i++){
             if ((clientList.get(i)).ID.equalsIgnoreCase(findID)){
@@ -105,10 +125,8 @@ public class ClientList{
     }
 
     public void updateCompleteness(ProductionList ListOnProduction, Record restaurantRecord){
-        //System.out.println(" 1");
         for (int i=0; i<clientList.size(); i++){
             if ((clientList.get(i)).Order.isEmpty()){
-                //System.out.println("2");
                 boolean found = false;
                 for (int j=0; j<(ListOnProduction.listToProduce).size(); j++){
                     if (((ListOnProduction.listToProduce).get(j)).clientID.equals((clientList.get(i)).ID)){

@@ -95,9 +95,9 @@ public class CargarDatos {
         
         System.out.println(" ");
         System.out.println(" - Generando Clientes");
-        Client c1 = new Client("7777",2,17);
-        Client c2 = new Client("8888",8,18);
-        Client c3 = new Client("3333",3,13);
+        Client c1 = new Client("7777",2,100);
+        Client c2 = new Client("8888",5,3);
+        Client c3 = new Client("3333",3,100);
         
         cl1.addClient(c1);
         cl1.addClient(c2);

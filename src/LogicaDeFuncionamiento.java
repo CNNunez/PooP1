@@ -6,7 +6,7 @@ public class LogicaDeFuncionamiento {
         if (ListReadyToOrder.isEmpty()){
             System.out.println("No hay clientes listos para ordenar");
         }else{
-            System.out.println("Clientes listos para ordenar");
+            System.out.println("-------------------------------------- Ready to Order");
             ListReadyToOrder.printClientList();
 
             // Agregar las ordenes de los clientes
@@ -25,15 +25,27 @@ public class LogicaDeFuncionamiento {
             System.out.println("No hay pedidos pendientes");
         }
 
+        // Print listas
+        System.out.println("-------------------------------------- ListOnWating");
+        ListOnWating.printClientList();
+
+        System.out.println("-------------------------------------- ListOnPending ");
+        ListOnPending.printClientList();
+
+        System.out.println("-------------------------------------- ListOnProduction ");
+        ListOnProduction.printProductionList();
+
+        System.out.println("-------------------------------------- restaurantRecord ");
+        restaurantRecord.printRecord();
+
         // Actualizar completitud de productos en la lista de produccion
         ListOnProduction.updateCompleteness(ListOnPending);
         ListOnPending.updateCompleteness(ListOnProduction, restaurantRecord);
-        ListOnProduction.printProductionList();
-        ListOnPending.printClientList();
-        restaurantRecord.printRecord();
+        
         
         // actualizar contadores de los clientes
-        ListOnWating.updateClientPatieneAndWaiting();
+        ListOnWating.updateClientWaiting();
+        ListOnPending.updateClientPatience(ListOnProduction, restaurantRecord);
     }
 }
 
