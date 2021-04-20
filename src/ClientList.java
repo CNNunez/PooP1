@@ -116,6 +116,7 @@ public class ClientList{
             clientList.get(i).updatePatience();
             if ((ClientsOnPending.get(i)).Patience <= 0){
                 restaurantRecord.updateRecord(0, 1);// add unsatisfed client to record
+                restaurantRecord.numOrdersCompleted = restaurantRecord.numOrdersCompleted - 1;
                 String IDToRemove = (ClientsOnPending.get(i)).ID;
                 clientList.remove(ClientsOnPending.get(i)); // remover cliente de lista de pendiente
 
