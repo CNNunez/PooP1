@@ -1,0 +1,26 @@
+[    
+    {
+        "Name": "Costillas",
+        "Price": 10000,
+        "Time": 3,
+        "Size": 4
+    },
+    {
+        "Name": "GordonBlue",
+        "Price": 5000,
+        "Time": 3,
+        "Size": 3
+    },
+    {
+        "Name": "Churrasco",
+        "Price": 8000,
+        "Time": 3,
+        "Size": 3
+    },
+    {
+        "Name": "Olla de Carne",
+        "Price": 4000,
+        "Time": 3,
+        "Size": 3
+    }
+]

@@ -4,10 +4,12 @@ import java.util.*;
 public class ProductionList {
     List <Production> listToProduce;
     int Capacity;
+    Ventana ventana;
 
-    ProductionList(){
+    ProductionList(Ventana vent){
         listToProduce = new ArrayList<>();
         Capacity = 0;
+        ventana = vent;
     }
 
     public void addToProduction(Menu restaurantMenu, ClientList ListOnPending){//anadir pedido a la lista de produccion
@@ -59,20 +61,24 @@ public class ProductionList {
     }
 
     public void printProductionList(){// imprime todos los clientes de la lista
-        System.out.println(" ");
-        System.out.println("---------ORDENES EN PRODUCCION---------");
+        String info = "";
+        info += " \n";
+        info += "---------ORDENES EN PRODUCCION---------\n";
         int cont = 0;
         for (Production orderInLine : listToProduce){
             cont = cont + 1;
-            System.out.println(cont);
-            System.out.println("ID: " + orderInLine.clientID);
-            System.out.println("Nombre de la orden: " + (orderInLine.productToProduce).Name);
-            System.out.println("Completitud: " + orderInLine.completeness + " de " + (orderInLine.productToProduce).Time);
-            System.out.println(" ");
-            System.out.println(" ");
+            info += cont + "\n";
+            info += "ID: " + orderInLine.clientID + "\n";
+            info += "Nombre de la orden: " + (orderInLine.productToProduce).Name + "\n";
+            info += "Completitud: " + orderInLine.completeness + " de " + (orderInLine.productToProduce).Time + "\n";
+            info += " \n";
+            info += " \n";
         }
-        System.out.println("---------------------------------------");
-        System.out.println(" ");
+        info += "---------------------------------------\n";
+        info += " \n";
+        if (info != ""){
+            ventana.setTexto(info);
+        }
     }
 
     public void updateCompleteness(ClientList ListOnPending){

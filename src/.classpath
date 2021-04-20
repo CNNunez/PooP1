@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-*"?>
+<classpath>
+    <classpathentry kind ="lib" path="lib/gson-2.8.6.jar"/>
+</classpath>

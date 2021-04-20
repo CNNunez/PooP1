@@ -12,14 +12,16 @@ public class Client {
     int Patience;
     int Bill;
     List<String> Order;
+    Ventana ventana;
 
     // Inicializar
-    public Client(String clientID, int clientWaitingTime, int clientPatience){
+    public Client(String clientID, int clientWaitingTime, int clientPatience, Ventana vent){
         ID = clientID;
         waitingTime = clientWaitingTime;
         Patience = clientPatience;
         Bill = 0;
         Order = new ArrayList<>();
+        ventana = vent;
     }
 
     // Metodo
@@ -29,6 +31,7 @@ public class Client {
 
     public void addOrder(Menu restaurantMenu, String newOrder){// anade las ordenes de los clientes
         int contAnadidos = 0;                                  // newOrder en formato separado por coma
+        String info = "";
         ArrayList<String> orderList = new ArrayList<>(Arrays.asList(newOrder.split(",")));
         for (int i=0; i<orderList.size(); i++){
             if (restaurantMenu.findProduct(orderList.get(i)) != null){
@@ -37,8 +40,9 @@ public class Client {
             }
         }
         if (contAnadidos != orderList.size()){
-            System.out.println(" ** ERROR: Algunos productos no se encuentran en el menu. En su orden se anadieron: " + contAnadidos + " productos.");
-            System.out.println(" ");
+            info += " ** ERROR: Algunos productos no se encuentran en el menu. En su orden se anadieron: " + contAnadidos + " productos." + "\n";
+            info += " \n";
+            ventana.setTexto(info);
         }
     }
 

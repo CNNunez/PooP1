@@ -6,9 +6,10 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 public class CargarDatos {
-    CargarDatos(Menu m1, ClientList cl1) throws IOException{
-        System.out.println(" ");
-        System.out.println(" ------  CARGANDO DATOS -----");
+    CargarDatos(Menu m1, ClientList cl1, Ventana ventana) throws IOException{
+        String info = "";
+        info +=" \n";
+        info +=" ------  CARGANDO DATOS -----\n";
         
         String acomps = "";
         try{
@@ -23,7 +24,7 @@ public class CargarDatos {
                 e.printStackTrace();
             }
         }catch(FileNotFoundException ex){
-            System.out.println("Error no se encontro el fichero");
+            info += "Error no se encontro el fichero\n";
         }
         Gson gson = new Gson();
         Accomp[] a = gson.fromJson(acomps, Accomp[].class);
@@ -45,7 +46,7 @@ public class CargarDatos {
                 e.printStackTrace();
             }
         }catch(FileNotFoundException ex){
-            System.out.println("Error no se encontro el fichero");
+            info += "Error no se encontro el fichero\n)";
         }
         Gson gson2 = new Gson();
         Dish[] di = gson2.fromJson(dish, Dish[].class);
@@ -67,7 +68,7 @@ public class CargarDatos {
                 e.printStackTrace();
             }
         }catch(FileNotFoundException ex){
-            System.out.println("Error no se encontro el fichero");
+            info += "Error no se encontro el fichero\n";
         }
         Gson gson3 = new Gson();
         Drink[] dr = gson3.fromJson(drinks, Drink[].class);
@@ -75,38 +76,20 @@ public class CargarDatos {
         for (int i = 0; i < dr.length ; i++){
             m1.add(dr[i]);
         }
-        
-        System.out.println(" ");
 
-        //System.out.println(" - Generando Menu");
-        //Drink d1 = new Drink("Coca",1000,"fria",200);
-        //Drink d2 = new Drink("Fresa",1500,"fria",250);
-        //Dish d3 = new Dish("Costillas",3000,1);
-        //Dish d4 = new Dish("Pollo",2500,1);
-        //Accomp d5 = new Accomp("Frijoles",500,"Salado");
-        //Accomp d6 = new Accomp("Arroz",800,"Salado");
-        //m1.add(d1);
-        //m1.add(d2);
-        //m1.add(d3);
-        //m1.add(d4);
-        //m1.add(d5);
-        //m1.add(d6);
-
-        
-        System.out.println(" ");
-        System.out.println(" - Generando Clientes");
-        Client c1 = new Client("7777",2,17);
-        Client c2 = new Client("8888",8,18);
-        Client c3 = new Client("3333",3,13);
+        info += " \n";
+        info += " - Generando Clientes\n";
+        Client c1 = new Client("7777",2,100,ventana);
+        Client c2 = new Client("8888",5,3,ventana);
+        Client c3 = new Client("3333",3,100,ventana);
         
         cl1.addClient(c1);
         cl1.addClient(c2);
         cl1.addClient(c3);
 
-        m1.print();
-
-
-        System.out.println(" ");
-        System.out.println(" ------  FIN DE CARGA -----");
+        info += " \n";
+        info += " ------  FIN DE CARGA -----\n";
+        if (info != "")
+            ventana.setTexto(info);
     }
 }

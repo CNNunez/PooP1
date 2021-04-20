@@ -12,10 +12,12 @@ import java.util.*;
 public class Menu{
     // Atributo
     public List<Product> listMenu;
+    public Ventana ventana;
 
     // Inicializar
-    public Menu(){
+    public Menu(Ventana vent){
         listMenu = new ArrayList<>();
+        ventana = vent;
     }
 
     // Metodos
@@ -25,44 +27,47 @@ public class Menu{
     }
 
     public void print(){// imprime todos los productos en el menu
-        System.out.println(" ");
-        System.out.println("--------MENU DEL RESTAURANTE--------");
+        String info = ""; 
+        info += " \n";
+        info += "--------MENU DEL RESTAURANTE--------\n";
         int cont = 0;
         for (int i=0; i<listMenu.size();i++) {
             cont = cont + 1;
-            System.out.println(cont);
+            info += cont + "\n";
 
             if (listMenu.get(i) instanceof Drink){// imprimir Bebida
                 Drink bebida = (Drink)listMenu.get(i);
-                System.out.println("Nombre: " + bebida.Name);
-                System.out.println(" - Precio: " + bebida.Price);
-                System.out.println(" - Tiempo: " + bebida.Time);
-                System.out.println(" - Tipo: " + bebida.Type);
-                System.out.println(" - Tamano: " + bebida.Size);
-                System.out.println(" ");
+                info += "Nombre: " + bebida.Name +"\n";
+                info += " - Precio: " + bebida.Price + "\n";
+                info += " - Tiempo: " + bebida.Time + "\n";
+                info += " - Tipo: " + bebida.Type + "\n";
+                info += " - Tamano: " + bebida.Size + "\n";
+                info += " \n";
             }
             else if (listMenu.get(i) instanceof Dish){// imprimir plato fuerte
                 Dish platoFuerte = (Dish)listMenu.get(i);
-                System.out.println("Nombre: " + platoFuerte.Name);
-                System.out.println(" - Precio: " + platoFuerte.Price);
-                System.out.println(" - Tiempo: " + platoFuerte.Time);
-                System.out.println(" - Tamano: " + platoFuerte.Size);
-                System.out.println(" ");
+                info += "Nombre: " + platoFuerte.Name + "\n";
+                info += " - Precio: " + platoFuerte.Price + "\n";
+                info += " - Tiempo: " + platoFuerte.Time + "\n";
+                info += " - Tamano: " + platoFuerte.Size + "\n";
+                info += " \n";
             }
             else if (listMenu.get(i) instanceof Accomp){// imprimir acompanamiento
                 Accomp acompanamiento = (Accomp)listMenu.get(i);
-                System.out.println("Nombre: " + acompanamiento.Name);
-                System.out.println(" - Precio: " + acompanamiento.Price);
-                System.out.println(" - Tiempo: " + acompanamiento.Time);
-                System.out.println(" - Tipo: " + acompanamiento.Type);
-                System.out.println(" ");
+                info += "Nombre: " + acompanamiento.Name + "\n";
+                info += " - Precio: " + acompanamiento.Price + "\n";
+                info += " - Tiempo: " + acompanamiento.Time + "\n";
+                info += " - Tipo: " + acompanamiento.Type + "\n";
+                info += " \n";
             }
             else{
                 System.out.println("ERROR: No se reconoce el tipo de producto");
             }
         }
-        System.out.println("------------------------------------");
-        System.out.println(" ");
+        info += "------------------------------------\n";
+        info += " \n";
+        if (info != "")
+            ventana.setTexto(info);
     }
 
     public Product findProduct(String findName){// busca por nombre, un producto en el menu. y retorna ese product

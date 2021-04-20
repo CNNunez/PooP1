@@ -1,0 +1,30 @@
+[
+    {
+        "Name": "Coca",
+        "Price": 1000,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 330
+    },
+    {
+        "Name": "Café",
+        "Price": 500,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 250
+    },
+    {
+        "Name": "Chocolate",
+        "Price": 800,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 200
+    },
+    {
+        "Name": "Agua",
+        "Price": 250,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 250
+    }
+]

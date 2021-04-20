@@ -11,10 +11,12 @@ import java.util.*;
 public class ClientList{
     // Atributo
     public List<Client> clientList;
+    public Ventana ventana;
 
     // Inicializar
-    public ClientList(){
+    public ClientList(Ventana vent){
         clientList = new ArrayList<>();
+        ventana = vent;
     }
 
     // Metodos
@@ -32,7 +34,9 @@ public class ClientList{
 
     public void addOrdersToClients(Menu restaurantMenu){
         for (int i=0; i<clientList.size(); i++){
-            System.out.println("Agregue una nueva orden para el cliente: " + (clientList.get(i)).ID);
+            String info = "";
+            info += "Agregue una nueva orden para el cliente: " + (clientList.get(i)).ID + "\n";
+            ventana.setTexto(info);
             String newOrder = System.console().readLine();
             clientList.get(i).addOrder(restaurantMenu, newOrder);
         }
@@ -47,26 +51,30 @@ public class ClientList{
     }
 
     public void printClientList(){// imprime todos los clientes de la lista
-        System.out.println(" ");
-        System.out.println("---------LISTA DE CLIENTES---------");
+        String info ="";
+        info += " \n";
+        info += "---------LISTA DE CLIENTES---------\n";
         int cont = 0;
         for (Client clientInLine : clientList){
             cont = cont + 1;
-            System.out.println(cont);
-            System.out.println("ID: " + clientInLine.ID);
-            System.out.println("Bill: " + clientInLine.Bill);
-            System.out.print("Order: ");
+            info += cont +"\n";
+            info += "ID: " + clientInLine.ID +"\n";
+            info += "Bill: " + clientInLine.Bill + "\n";
+            info += "WaitingTime: " + clientInLine.waitingTime + "\n";
+            info += "Patience: " + clientInLine.Patience + "\n";
+            info += "Order: \n";
             for (String dishName: clientInLine.Order){
-                System.out.print(dishName + ", ");
+                info += dishName + ", " + "\n";
             }
-            System.out.println(" ");
-            System.out.println(" ");
+            info += "\n\n";
         }
-        System.out.println("-----------------------------------");
-        System.out.println(" ");
+        info +="-----------------------------------\n";
+        info += " \n";
+        if (info != "")
+            ventana.setTexto(info);
     }
 
-    public void updateClientPatieneAndWaiting(){// disminuye en 1 el tiempo de espera y paciencia
+    public void  updateClientWaiting(){// disminuye en 1 el tiempo de espera y paciencia
         for (int i=0; i<clientList.size(); i++){
             clientList.get(i).updatePatience();
             clientList.get(i).updateWaitingTime();
@@ -83,9 +91,26 @@ public class ClientList{
         }
         return null;
     }
-    
+    public void updateClientPatience(ProductionList ListOnProduction, Record restaurantRecord){// si tiempo de espera es 0 borra de waitingList y agrega a nueva lista
+        List<Client> ClientsOnPending = new ArrayList<>(clientList);
+        for (int i=0; i<ClientsOnPending.size(); i++){
+            clientList.get(i).updatePatience();
+            if ((ClientsOnPending.get(i)).Patience <= 0){
+                restaurantRecord.updateRecord(0, 1);// add unsatisfed client to record
+                String IDToRemove = (ClientsOnPending.get(i)).ID;
+                clientList.remove(ClientsOnPending.get(i)); // remover cliente de lista de pendiente
+
+                List <Production> OrdersOnProduction = new ArrayList<>(ListOnProduction.listToProduce);
+                for (int j=0; j<OrdersOnProduction.size(); j++){// remover orden de lista de produccion
+                    if ((OrdersOnProduction.get(j)).clientID.equalsIgnoreCase(IDToRemove)){
+                        (ListOnProduction.listToProduce).remove(OrdersOnProduction.get(j));
+                    }
+                }
+            }
+        }
+    }
     public ClientList checkWaitingTime(){// si tiempo de espera es 0 borra de waitingList y agrega a nueva lista
-        ClientList clientsToOrder = new ClientList();
+        ClientList clientsToOrder = new ClientList(ventana);
         for (int i=0; i<clientList.size(); i++){
             if ((clientList.get(i)).waitingTime <= 0){
                 clientsToOrder.addClient(clientList.get(i));
@@ -104,11 +129,9 @@ public class ClientList{
         return null;
     }
 
-    public void updateCompleteness(ProductionList ListOnProduction){
-        //System.out.println(" 1");
+    public void updateCompleteness(ProductionList ListOnProduction, Record restaurantRecord){
         for (int i=0; i<clientList.size(); i++){
             if ((clientList.get(i)).Order.isEmpty()){
-                //System.out.println("2");
                 boolean found = false;
                 for (int j=0; j<(ListOnProduction.listToProduce).size(); j++){
                     if (((ListOnProduction.listToProduce).get(j)).clientID.equals((clientList.get(i)).ID)){
@@ -116,6 +139,8 @@ public class ClientList{
                     }
                 }
                 if (found == false){
+                    int totalBill = (clientList.get(i)).Bill;
+                    restaurantRecord.updateRecord(totalBill, 0);
                     clientList.remove(clientList.get(i));
                 }
             }

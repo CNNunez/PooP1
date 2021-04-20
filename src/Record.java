@@ -6,11 +6,13 @@ public class Record {
     int numOrdersCompleted;
     double Profits;
     int unsatisfiedClientes;
+    Ventana ventana;
     
-    Record(){
+    Record(Ventana vent){
         numOrdersCompleted = 0;
         Profits = 0;
         unsatisfiedClientes = 0;
+        ventana = vent;
     }
 
     void updateRecord(double newProfits, int newUnsatisfiedClientes){
@@ -20,10 +22,12 @@ public class Record {
     }
 
     void printRecord(){
-        System.out.println("---------- REGISTRO DE VENTAS ----------");
-        System.out.println("- Numero de ordenes completadas: " + numOrdersCompleted);
-        System.out.println("- Ganancias acumuladas: " + Profits);
-        System.out.println("- Clientes insatisfechos: " + unsatisfiedClientes);
-        System.out.println("---------- ------------------ ----------");
+        String info = "";
+        info += "---------- REGISTRO DE VENTAS ----------\n";
+        info += "- Numero de ordenes completadas: " + numOrdersCompleted + "\n";
+        info += "- Ganancias acumuladas: " + Profits + "\n";
+        info += "- Clientes insatisfechos: " + unsatisfiedClientes + "\n";
+        info +="---------- ------------------ ----------\n";
+        ventana.setTexto(info);
     }
 }
