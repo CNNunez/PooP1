@@ -77,11 +77,20 @@ public class CargarDatos {
             m1.add(dr[i]);
         }
 
+<<<<<<< HEAD
         info += " \n";
         info += " - Generando Clientes\n";
         Client c1 = new Client("7777",2,100,ventana);
         Client c2 = new Client("8888",5,3,ventana);
         Client c3 = new Client("3333",3,100,ventana);
+=======
+        
+        System.out.println(" ");
+        System.out.println(" - Generando Clientes");
+        Client c1 = new Client("7777",2,100);
+        Client c2 = new Client("8888",5,3);
+        Client c3 = new Client("3333",3,100);
+>>>>>>> bbc4f83f662de33c84c3d97965ecc9a555398f3a
         
         cl1.addClient(c1);
         cl1.addClient(c2);
