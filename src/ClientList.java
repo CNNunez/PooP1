@@ -5,6 +5,7 @@
 
 // Imports
 import java.util.*;
+import javax.swing.JTextArea;
 
 
 // Class
@@ -46,10 +47,11 @@ public class ClientList{
         return clientList.get(0);
     }
 
-    public void printClientList(){// imprime todos los clientes de la lista
+    public void printClientList(JTextArea textAreaClientList){// imprime todos los clientes de la lista
         System.out.println(" ");
         System.out.println("---------LISTA DE CLIENTES---------");
         int cont = 0;
+        textAreaClientList.setText("");
         for (Client clientInLine : clientList){
             cont = cont + 1;
             System.out.println(cont);
@@ -63,6 +65,18 @@ public class ClientList{
             }
             System.out.println(" ");
             System.out.println(" ");
+
+            textAreaClientList.append("" + cont + "\n\r");
+            textAreaClientList.append("ID: " + clientInLine.ID + "\n\r");
+            textAreaClientList.append("Bill: " + clientInLine.Bill + "\n\r");
+            textAreaClientList.append("WaitingTime: " + clientInLine.waitingTime + "\n\r");
+            textAreaClientList.append("Patience: " + clientInLine.Patience + "\n\r");
+            textAreaClientList.append("Order: ");
+            for (String dishName: clientInLine.Order){
+                textAreaClientList.append(dishName + ", ");
+            }
+            textAreaClientList.append(" " + "\n\r");
+            textAreaClientList.append(" " + "\n\r");
         }
         System.out.println("-----------------------------------");
         System.out.println(" ");

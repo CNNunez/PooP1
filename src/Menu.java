@@ -6,6 +6,7 @@
 
 // Imports
 import java.util.*;
+import javax.swing.JTextArea;
 
 
 // Class
@@ -24,13 +25,15 @@ public class Menu{
         listMenu.add(newProduct);
     }
 
-    public void print(){// imprime todos los productos en el menu
+    public void print(JTextArea textAreaMenu){// imprime todos los productos en el menu
         System.out.println(" ");
         System.out.println("--------MENU DEL RESTAURANTE--------");
         int cont = 0;
+        textAreaMenu.setText("");
         for (int i=0; i<listMenu.size();i++) {
             cont = cont + 1;
             System.out.println(cont);
+            textAreaMenu.append(""+cont + "\n\r");
 
             if (listMenu.get(i) instanceof Drink){// imprimir Bebida
                 Drink bebida = (Drink)listMenu.get(i);
@@ -40,6 +43,13 @@ public class Menu{
                 System.out.println(" - Tipo: " + bebida.Type);
                 System.out.println(" - Tamano: " + bebida.Size);
                 System.out.println(" ");
+                
+                textAreaMenu.append("Nombre: " + bebida.Name + "\n\r");
+                textAreaMenu.append(" - Precio: " + bebida.Price + "\n\r");
+                textAreaMenu.append(" - Tiempo: " + bebida.Time + "\n\r");
+                textAreaMenu.append(" - Tipo: " + bebida.Type + "\n\r");
+                textAreaMenu.append(" - Tamano: " + bebida.Size + "\n\r");
+                textAreaMenu.append(" " + "\n\r");
             }
             else if (listMenu.get(i) instanceof Dish){// imprimir plato fuerte
                 Dish platoFuerte = (Dish)listMenu.get(i);
@@ -48,6 +58,12 @@ public class Menu{
                 System.out.println(" - Tiempo: " + platoFuerte.Time);
                 System.out.println(" - Tamano: " + platoFuerte.Size);
                 System.out.println(" ");
+
+                textAreaMenu.append("Nombre: " + platoFuerte.Name + "\n\r");
+                textAreaMenu.append(" - Precio: " + platoFuerte.Price + "\n\r");
+                textAreaMenu.append(" - Tiempo: " + platoFuerte.Time + "\n\r");
+                textAreaMenu.append(" - Tamano: " + platoFuerte.Size + "\n\r");
+                textAreaMenu.append(" " + "\n\r");
             }
             else if (listMenu.get(i) instanceof Accomp){// imprimir acompanamiento
                 Accomp acompanamiento = (Accomp)listMenu.get(i);
@@ -56,9 +72,16 @@ public class Menu{
                 System.out.println(" - Tiempo: " + acompanamiento.Time);
                 System.out.println(" - Tipo: " + acompanamiento.Type);
                 System.out.println(" ");
+
+                textAreaMenu.append("Nombre: " + acompanamiento.Name + "\n\r");
+                textAreaMenu.append(" - Precio: " + acompanamiento.Price + "\n\r");
+                textAreaMenu.append(" - Tiempo: " + acompanamiento.Time + "\n\r");
+                textAreaMenu.append(" - Tipo: " + acompanamiento.Type + "\n\r");
+                textAreaMenu.append(" " + "\n\r");
             }
             else{
                 System.out.println("ERROR: No se reconoce el tipo de producto");
+                textAreaMenu.append("ERROR: No se reconoce el tipo de producto" + "\n\r");
             }
         }
         System.out.println("------------------------------------");

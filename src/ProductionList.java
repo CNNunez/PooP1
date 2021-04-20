@@ -1,6 +1,8 @@
 // Imports
 import java.util.*;
 
+import javax.swing.JTextArea;
+
 public class ProductionList {
     List <Production> listToProduce;
     int Capacity;
@@ -58,10 +60,11 @@ public class ProductionList {
         }
     }
 
-    public void printProductionList(){// imprime todos los clientes de la lista
+    public void printProductionList(JTextArea textAreaOnProduction){// imprime todos los clientes de la lista
         System.out.println(" ");
         System.out.println("---------ORDENES EN PRODUCCION---------");
         int cont = 0;
+        textAreaOnProduction.setText("");
         for (Production orderInLine : listToProduce){
             cont = cont + 1;
             System.out.println(cont);
@@ -70,6 +73,13 @@ public class ProductionList {
             System.out.println("Completitud: " + orderInLine.completeness + " de " + (orderInLine.productToProduce).Time);
             System.out.println(" ");
             System.out.println(" ");
+
+            textAreaOnProduction.append("" + cont + "\n\r");
+            textAreaOnProduction.append("ID: " + orderInLine.clientID + "\n\r");
+            textAreaOnProduction.append("Nombre de la orden: " + (orderInLine.productToProduce).Name + "\n\r");
+            textAreaOnProduction.append("Completitud: " + orderInLine.completeness + " de " + (orderInLine.productToProduce).Time + "\n\r");
+            textAreaOnProduction.append(" " + "\n\r");
+            textAreaOnProduction.append(" " + "\n\r");
         }
         System.out.println("---------------------------------------");
         System.out.println(" ");
