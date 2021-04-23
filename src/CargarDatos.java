@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 public class CargarDatos {
-    CargarDatos(Menu m1, ClientList cl1) throws IOException{
+    CargarDatos(Menu m1) throws IOException{
         System.out.println(" ");
         System.out.println(" ------  CARGANDO DATOS -----");
         
@@ -75,18 +75,5 @@ public class CargarDatos {
         for (int i = 0; i < dr.length ; i++){
             m1.add(dr[i]);
         }
-        
-        Client c1 = new Client("7777",2,100);
-        Client c2 = new Client("8888",5,3);
-        Client c3 = new Client("3333",3,100);
-        
-        cl1.addClient(c1);
-        cl1.addClient(c2);
-        cl1.addClient(c3);
-
-
-
-        System.out.println(" ");
-        System.out.println(" ------  FIN DE CARGA -----");
     }
 }

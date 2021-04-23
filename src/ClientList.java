@@ -101,10 +101,11 @@ public class ClientList{
     
     public ClientList checkWaitingTime(){// si tiempo de espera es 0 borra de waitingList y agrega a nueva lista
         ClientList clientsToOrder = new ClientList();
-        for (int i=0; i<clientList.size(); i++){
-            if ((clientList.get(i)).waitingTime <= 0){
-                clientsToOrder.addClient(clientList.get(i));
-                clientList.remove(clientList.get(i));
+        List<Client> auxClientList = new ArrayList<>(clientList);
+        for (int i=0; i<auxClientList.size(); i++){
+            if ((auxClientList.get(i)).waitingTime <= 0){
+                clientsToOrder.addClient(auxClientList.get(i));
+                clientList.remove(auxClientList.get(i));
             }
         }
         return clientsToOrder;

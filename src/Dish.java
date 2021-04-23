@@ -3,9 +3,9 @@
 */
 
 public class Dish extends Product{
-    int Size;
+    float Size;
     
-    Dish(String newName, int newPrice, int newSize){
+    Dish(String newName, int newPrice, float newSize){
         super (newName, newPrice, 5);
         Size = newSize;
     }
