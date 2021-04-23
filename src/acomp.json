@@ -1,0 +1,32 @@
+[
+    {
+        "Name": "Arroz",
+        "Price": 500,
+        "Time": 2,
+        "Type": "Salado"
+    },
+    {
+        "Name": "Frjoles",
+        "Price": 400,
+        "Time": 2,
+        "Type": "Salado"
+    },
+    {
+        "Name": "Ensalada",
+        "Price": 600,
+        "Time": 2,
+        "Type": "Salado"
+    },
+    {
+        "Name": "Lentejas",
+        "Price": 300,
+        "Time": 2,
+        "Type": "Salado"
+    },
+    {
+        "Name": "Platano",
+        "Price": 400,
+        "Time": 2,
+        "Type": "Dulce"
+    }
+]

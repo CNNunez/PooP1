@@ -1,0 +1,86 @@
+[
+    {
+        "Name": "Coca 200",
+        "Price": 500,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 200
+    },
+    {
+        "Name": "Coca 250",
+        "Price": 800,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 800
+    },
+    {
+        "Name": "Coca 330",
+        "Price": 1000,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 330
+    },
+    {
+        "Name": "Café 200",
+        "Price": 500,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 250
+    },
+    {
+        "Name": "Café 250",
+        "Price": 700,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 250
+    },
+    {
+        "Name": "Café 330",
+        "Price": 900,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 330
+    },
+    {
+        "Name": "Chocolate 200",
+        "Price": 600,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 200
+    },
+    {
+        "Name": "Chocolate 250",
+        "Price": 800,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 2
+    },
+    {
+        "Name": "Chocolate 330",
+        "Price": 1000,
+        "Time": 1,
+        "Type":"Caliente",
+        "Size": 2
+    },
+    {
+        "Name": "Agua 200",
+        "Price": 250,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 200
+    },
+    {
+        "Name": "Agua 250",
+        "Price": 350,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 250
+    },
+    {
+        "Name": "Agua 330",
+        "Price": 500,
+        "Time": 1,
+        "Type":"Fría",
+        "Size": 330
+    }
+]
