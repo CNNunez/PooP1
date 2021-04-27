@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 
 
 // Class
-public class ClientList{
+public class ClientList {
     // Atributo
     public List<Client> clientList;
 

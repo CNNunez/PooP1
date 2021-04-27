@@ -1,8 +1,4 @@
 // Imports
-import javax.swing.border.Border;
-
-import java.awt.BorderLayout;
-
 import javax.swing.plaf.DimensionUIResource;
 import java.awt.*;
 import javax.swing.*;
@@ -10,6 +6,10 @@ import java.awt.event.*;
 
 
 public class Ventana extends JFrame implements ActionListener{
+    /**
+     *
+     */
+    private static final long serialVersionUID = -784964507977347415L;
     int contTicks;
     int contAddOrder;
 
@@ -238,8 +238,9 @@ public class Ventana extends JFrame implements ActionListener{
         textFielNewOrder.setBounds(20+(20+200)*2,350,200,30);//.setBounds(x, y, width, height)
         this.add(textFielNewOrder);
 
-        ejAddOrder = new JLabel("Ej: Costillas,Coca,Arroz,Ensalada");
+        ejAddOrder = new JLabel("Ej: Costillas 1/2,Coca 250,Arroz,Ensalada");
         ejAddOrder.setForeground(new Color(157,157,157));
+        ejAddOrder.setFont(new Font("TimesRoman",Font.BOLD,9));
         ejAddOrder.setBounds(20+(20+200)*2,380,200,25);//.setBounds(x, y, width, height)
         this.add(ejAddOrder);
 
@@ -367,6 +368,11 @@ public class Ventana extends JFrame implements ActionListener{
         ListOnProduction.updateCompleteness(ListOnPending);
         ListOnPending.updateCompleteness(ListOnProduction, restaurantRecord);
         ListOnWating.updateClientWaiting();
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+
     }
 }
 
